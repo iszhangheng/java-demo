@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="es-tools:war">
+    <output-path>$PROJECT_DIR$/es-tools/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>es-tools</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="es-tools-0.0.1-SNAPSHOT.war">
+      <element id="artifact" artifact-name="es-tools:war exploded" />
+    </root>
+  </artifact>
+</component>

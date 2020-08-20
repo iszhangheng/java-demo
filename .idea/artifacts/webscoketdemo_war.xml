@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="webscoketdemo:war">
+    <output-path>$PROJECT_DIR$/spring-boot-web-socket/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>webscoketdemo</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="webscoketdemo-0.0.1-SNAPSHOT.war">
+      <element id="artifact" artifact-name="webscoketdemo:war exploded" />
+    </root>
+  </artifact>
+</component>
