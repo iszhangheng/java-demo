@@ -5,7 +5,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 public class CustomFilter extends UsernamePasswordAuthenticationFilter {
 
-    protected void configure(AuthenticationManagerBuilder auth){
+    protected void configure(AuthenticationManagerBuilder auth) {
 
     }
 

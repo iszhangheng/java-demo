@@ -1,6 +1,5 @@
 package com.example.springhibernate.entity;
 
-import com.example.springhibernate.annotations.UnderscoreDoesNotBegin;
 import lombok.Data;
 
 import javax.validation.constraints.*;
@@ -10,7 +9,6 @@ public class Foo {
 
     @NotNull
     @Size(min = 3, max = 30, message = "YES")
-    @UnderscoreDoesNotBegin
     private String name;
 
 //    @Min(18)

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.FindTableDetailMapper">
+    <select id="selectAll" parameterType="string" resultType="map">
+        SELECT
+        b.ORDINAL_POSITION AS "字段序号",
+        b.TABLE_NAME AS "表英文名",
+        a.TABLE_COMMENT AS "表中文名",
+        b.COLUMN_NAME AS "字段英文名",
+        b.COLUMN_COMMENT AS "字段中文名",
+        b.DATA_TYPE AS "字段类型",
+        b.CHARACTER_MAXIMUM_LENGTH AS "长度",
+        NULL AS "精度",
+        b.COLUMN_KEY AS "是否主键",
+        NULL AS "外键",
+        b.IS_NULLABLE AS "是否可为空（Y/N）",
+        b.COLUMN_DEFAULT AS "缺省值",
+        NULL AS "取值范围",
+        NULL AS "业务取值说明",
+        NULL AS "当前状态",
+        NULL AS "备注",
+        NULL AS "企业级数据字典数据项编号",
+        NULL AS "企业级数据字典匹配结果"
+        FROM
+        information_schema.`TABLES` a LEFT JOIN
+        information_schema.`COLUMNS` b
+        ON a.TABLE_NAME = b.TABLE_NAME
+        WHERE
+        a.TABLE_SCHEMA = #{dbName}
+    </select>
+    <select id="selectByDbNameAndTableName" parameterType="string" resultType="map">
+        SELECT
+        b.ORDINAL_POSITION AS "字段序号",
+        b.TABLE_NAME AS "表英文名",
+        a.TABLE_COMMENT AS "表中文名",
+        b.COLUMN_NAME AS "字段英文名",
+        b.COLUMN_COMMENT AS "字段中文名",
+        b.DATA_TYPE AS "字段类型",
+        b.CHARACTER_MAXIMUM_LENGTH AS "长度",
+        NULL AS "精度",
+        b.COLUMN_KEY AS "是否主键",
+        NULL AS "外键",
+        b.IS_NULLABLE AS "是否可为空（Y/N）",
+        b.COLUMN_DEFAULT AS "缺省值",
+        NULL AS "取值范围",
+        NULL AS "业务取值说明",
+        NULL AS "当前状态",
+        NULL AS "备注",
+        NULL AS "企业级数据字典数据项编号",
+        NULL AS "企业级数据字典匹配结果"
+        FROM
+        (
+        SELECT
+        TABLE_NAME,
+        TABLE_COMMENT,
+        TABLE_SCHEMA
+        FROM
+        information_schema.`TABLES`
+        WHERE
+        TABLE_SCHEMA = #{dbName}
+        AND TABLE_NAME = #{tableName}
+        ) a
+        LEFT JOIN (
+        SELECT
+        ORDINAL_POSITION,
+        TABLE_NAME,
+        COLUMN_NAME,
+        COLUMN_COMMENT,
+        DATA_TYPE,
+        CHARACTER_MAXIMUM_LENGTH,
+        COLUMN_KEY,
+        IS_NULLABLE,
+        COLUMN_DEFAULT
+        FROM
+        information_schema.`COLUMNS`
+        WHERE
+        TABLE_SCHEMA = #{dbName}
+        AND TABLE_NAME = #{tableName}
+        ) b ON a.TABLE_NAME = b.TABLE_NAME
+    </select>
+
+    <select id="selectAllTableByDbName" parameterType="string" resultType="map">
+        SELECT
+        TABLE_NAME AS "表英文名",
+        TABLE_COMMENT AS "表中文名"
+        FROM
+        information_schema.`TABLES`
+        WHERE
+        TABLE_SCHEMA = #{dbName}
+    </select>
+</mapper>
